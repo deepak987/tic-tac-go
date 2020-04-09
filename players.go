@@ -71,7 +71,6 @@ func (a aiPlayer) makeMove(b gameBoard) {
 	} else {
 		bestMove = possibleMoves[argminSlice(boardEvaluations)]
 	}
-
 	b.board[bestMove.x][bestMove.y] = a.playerNumber
 
 }
@@ -104,7 +103,6 @@ func (h humanPlayer) makeMove(b gameBoard) {
 		}
 	}
 	b.board[x][y] = h.playerNumber
-
 
 }
 
