@@ -5,6 +5,7 @@ import "fmt"
 func main() {
 	b := initGameBoard()
 	b.player1 = humanPlayer{playerNumber: 1}
+
 	b.player2 = aiPlayer{playerNumber: -1}
 
 	play(b)

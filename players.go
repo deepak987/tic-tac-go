@@ -105,6 +105,7 @@ func (h humanPlayer) makeMove(b gameBoard) {
 	}
 	b.board[x][y] = h.playerNumber
 
+
 }
 
 func min(a, b int) int {
