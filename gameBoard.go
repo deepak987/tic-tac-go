@@ -17,23 +17,6 @@ type gameBoard struct {
 	player2 ticTacToePlayer // Or rather, player -1
 }
 
-func (g gameBoard) play() {
-	gameOver := false
-	winner := 0
-	movesPlayed := 0
-	for !gameOver {
-		if movesPlayed%2 == 0 {
-			g.player1.makeMove(g)
-		} else {
-			g.player2.makeMove(g)
-		}
-		movesPlayed++
-		gameOver, winner = g.checkGameOver()
-		g.displayBoard()
-		fmt.Println()
-	}
-	fmt.Printf("Winner: %d", winner)
-}
 func initGameBoard() gameBoard {
 	b := gameBoard{}
 	a := [][]int{

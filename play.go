@@ -4,9 +4,11 @@ import "fmt"
 
 func main() {
 	b := initGameBoard()
-	b.player1 = randomPlayer{playerNumber: 1}
+	b.player1 = humanPlayer{playerNumber: 1}
 	b.player2 = randomPlayer{playerNumber: -1}
+
 	play(b)
+
 }
 
 func play(g gameBoard) {
