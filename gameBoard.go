@@ -12,9 +12,11 @@ type boardCoordinate struct {
 	y int
 }
 type gameBoard struct {
-	board   [][]int
-	player1 ticTacToePlayer
-	player2 ticTacToePlayer // Or rather, player -1
+	board              [][]int
+	player1            ticTacToePlayer
+	player2            ticTacToePlayer // Or rather, player -1
+	activePlayerNumber int
+	movesPlayed        int
 }
 
 func initGameBoard() gameBoard {
@@ -25,6 +27,8 @@ func initGameBoard() gameBoard {
 		{0, 0, 0},
 	}
 	b.board = a
+	b.activePlayerNumber = 1
+	b.movesPlayed = 0
 	return b
 }
 
@@ -123,5 +127,31 @@ func (g gameBoard) checkGameOver() (bool, int) {
 
 	}
 	return false, 0
+
+}
+
+func (g gameBoard) getPossibleNextBoards() ([]boardCoordinate, []gameBoard) {
+	possibleMoves := g.getAllEmptyLocations()
+	var possibleNextMoveBoards []gameBoard
+	for _, p := range possibleMoves {
+		newBoard := gameBoard{player1: g.player1, player2: g.player2, movesPlayed: g.movesPlayed, activePlayerNumber: g.activePlayerNumber}
+		a := [][]int{
+			{0, 0, 0},
+			{0, 0, 0},
+			{0, 0, 0},
+		}
+		newBoard.board = a
+		for i := 0; i < BoardDimension; i++ {
+			for j := 0; j < BoardDimension; j++ {
+				newBoard.board[i][j] = g.board[i][j]
+			}
+		}
+
+		newBoard.board[p.x][p.y] = g.activePlayerNumber
+		newBoard.activePlayerNumber *= -1
+		newBoard.movesPlayed++
+		possibleNextMoveBoards = append(possibleNextMoveBoards, newBoard)
+	}
+	return possibleMoves, possibleNextMoveBoards
 
 }
