@@ -10,7 +10,7 @@ type boardCoordinate struct {
 	y int
 }
 type gameBoard struct {
-	board   [][]uint
+	board   [][]int
 	player1 ticTacToePlayer
 	player2 ticTacToePlayer
 }
@@ -20,5 +20,24 @@ func (g gameBoard) checkGameOver() int {
 }
 
 func (g gameBoard) getAllEmptyLocations() []boardCoordinate {
-	return make([]boardCoordinate, 0, 0)
+	var emptyLocations []boardCoordinate
+	for i := 0; i < BoardDimension; i++ {
+		for j := 0; j < BoardDimension; j++ {
+			if g.board[i][j] == 0 {
+				emptyLocations = append(emptyLocations, boardCoordinate{i, j})
+			}
+		}
+	}
+	return emptyLocations
+}
+
+func initGameBoard() gameBoard {
+	b := gameBoard{}
+	a := [][]int{
+		{0, 0, 0},
+		{0, 0, 0},
+		{0, 0, 0},
+	}
+	b.board = a
+	return b
 }

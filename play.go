@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	a := gameBoard{}
+	b := initGameBoard()
 	fmt.Println("Lets go!")
-	fmt.Println(a)
+	fmt.Println(b.getAllEmptyLocations())
 }
